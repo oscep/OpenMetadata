@@ -26,9 +26,6 @@
 name: Storybook nightly build
 
 on:
-  schedule:
-    # 02:00 UTC every day.
-    - cron: '0 2 * * *'
   # Allow a one-click manual run from the Actions tab.
   workflow_dispatch:
     inputs:

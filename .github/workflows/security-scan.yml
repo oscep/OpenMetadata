@@ -11,8 +11,6 @@
 
 name: security-scan
 on:
-  schedule:
-    - cron: "0 0 */2 * *"
   workflow_dispatch:
     inputs:
       SEND_SLACK_NOTIFICATION:
@@ -22,7 +20,7 @@ on:
         default: true
 
 env:
-  # Manual runs may opt out of Slack; schedule (where inputs are unset) always sends.
+  # Manual runs may opt out of Slack; the default sends results.
   # Explicit empty-check, since `||` would treat the string 'false' inconsistently when the
   # input is typed `boolean` — only an empty string should fall back to 'true'.
   SEND_SLACK_NOTIFICATION: ${{ github.event.inputs.SEND_SLACK_NOTIFICATION == '' && 'true' || github.event.inputs.SEND_SLACK_NOTIFICATION }}

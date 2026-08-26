@@ -33,12 +33,10 @@
 # chance.
 #
 # Triggers:
-#   * schedule (6h)      — keeps last_accessed fresh and re-saves after any
-#                          eviction or runner-image roll.
 #   * workflow_dispatch  — populate immediately (first run / mid-incident).
 #   * push to main touching the reusable workflow, this file, or yarn.lock —
 #                          key inputs changed; repopulate the new keys right
-#                          away instead of waiting ≤6 h.
+#                          away.
 #
 # IMPORTANT: the cache keys and the apt package list below MUST stay
 # identical to their counterparts in playwright-e2e-reusable.yml — a drifted
@@ -46,8 +44,6 @@
 name: Populate Playwright CI caches
 
 on:
-  schedule:
-    - cron: "0 */6 * * *"
   workflow_dispatch:
   push:
     branches:
